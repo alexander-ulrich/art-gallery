@@ -19,9 +19,12 @@ export async function fetchArt(page: number) {
     if (success) {
       console.log(data);
       return data;
+    } else {
+      throw new Error(z.prettifyError(error));
     }
-    console.log(z.prettifyError(error));
   } catch (error) {
-    console.log(error);
+    if (error instanceof Error) {
+      console.log(error.message);
+    }
   }
 }
