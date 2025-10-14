@@ -4,8 +4,8 @@ import type { ArtResponseType } from "./Types";
 import { fetchArt } from "./utils/fetchArt";
 
 function App() {
-  const [page, setPage] = useState(2);
-  const [artData, setArtData] = useState<ArtResponseType | null>(null);
+  const [page, setPage] = useState(1);
+  const [artData, setArtData] = useState<ArtResponseType | undefined>();
 
   useEffect(() => {
     async function getNextPage() {
@@ -27,7 +27,7 @@ function App() {
           >
             First Page
           </button>
-          {artData?.pagination.prev_page && (
+          {artData?.pagination.prev_url && (
             <button
               type="button"
               className="btn btn-accent"
@@ -46,13 +46,17 @@ function App() {
             Last Page
           </button>
 
-          <button
-            type="button"
-            className="btn btn-accent"
-            onClick={() => setPage((prev) => (prev < 10824 ? prev + 1 : prev))}
-          >
-            Next Page
-          </button>
+          {artData?.pagination.next_url && (
+            <button
+              type="button"
+              className="btn btn-accent"
+              onClick={() =>
+                setPage((prev) => (prev < 10824 ? prev + 1 : prev))
+              }
+            >
+              Next Page
+            </button>
+          )}
         </div>
       </div>
       <p className="text-center">
