@@ -25,6 +25,7 @@ export const ArtworkSchema = z.object({
   date_display: z.nullable(z.string()),
   artist_display: z.nullable(z.string()),
   description: z.nullable(z.string()),
+  image_id: z.nullable(z.string()),
 });
 
 export const ArtDataSchema = z.array(ArtworkSchema);
