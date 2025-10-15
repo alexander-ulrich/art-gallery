@@ -3,11 +3,11 @@ export default function Header() {
     //
     <header className="bg-base-300">
       <nav className="navbar bg-base-300 shadow-sm">
-        <div className="dropdown min-[589px]:hidden">
+        <div className="dropdown min-[589px]:hidden pl-5">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
+              className="h-10 w-10 text-indigo-900"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -26,22 +26,27 @@ export default function Header() {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
             <li>
-              <a href="/">Home</a>
+              <a href="/" className="navLink">
+                Home
+              </a>
             </li>
             <li>
-              <a href="/personal-gallery">Personal Gallery</a>
+              <a href="/personal-gallery" className="navLink">
+                Personal Gallery
+              </a>
             </li>
           </ul>
         </div>
         <div className="flex-1 max-[590px]:hidden justify-between">
-          <a href="/" className="btn btn-ghost text-xl">
-            Home
-          </a>
-          <a href="/personal-gallery" className="btn btn-ghost text-xl">
-            Personal Gallery
-          </a>
+          <div className="flex gap-5 pl-10 ">
+            <a href="/" className="navLink text-2xl">
+              Home
+            </a>
+            <a href="/personal-gallery" className="navLink text-2xl">
+              Personal Gallery
+            </a>
+          </div>
         </div>
-        <h1 className="text-3xl pr-10">Art Gallery</h1>
       </nav>
     </header>
   );
