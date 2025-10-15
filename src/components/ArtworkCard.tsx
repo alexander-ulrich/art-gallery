@@ -14,7 +14,7 @@ export default function ArtworkCard({
     <article className="card mb-5 bg-base-100 max-w-80 p-5 shadow-sm h-120">
       <div className="card-body min-w-[280px] relative">
         <div
-          className="tooltip"
+          className="tooltip tooltip-accent font-semibold text-sm"
           data-tip={artwork.description?.replace(/<\/?[^>]+(>|$)/g, "")}
         >
           {artwork.image_id && (
