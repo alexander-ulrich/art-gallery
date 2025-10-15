@@ -4,7 +4,7 @@ export const ArtPaginationSchema = z.object({
   total: z.number(),
   limit: z.number(),
   offset: z.number(),
-  total_pages: z.number(),
+  total_pages: z.number().default(1),
   current_page: z.number(),
   prev_url: z.url().optional(),
   next_url: z.url().optional(),
@@ -24,6 +24,7 @@ export const ArtworkSchema = z.object({
   main_reference_number: z.nullable(z.string()),
   date_display: z.nullable(z.string()),
   artist_display: z.nullable(z.string()),
+  artist_title: z.nullable(z.string()),
   description: z.nullable(z.string()),
   image_id: z.nullable(z.string()),
 });
