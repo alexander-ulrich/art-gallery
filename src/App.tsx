@@ -18,11 +18,11 @@ function App() {
   return (
     <>
       <h1 className="text-center text-5xl py-5">Art Gallery</h1>
-      <div className="flex flex-row gap-5 justify-center my-10">
+      <div className="flex flex-row  justify-center my-10 gap-5">
         <div className="flex flex-col gap-5">
           <button
             type="button"
-            className="btn btn-accent"
+            className="btn btn-accent w-35"
             onClick={() => setPage(1)}
           >
             First Page
@@ -30,7 +30,7 @@ function App() {
           {artData?.pagination.prev_url && (
             <button
               type="button"
-              className="btn btn-accent"
+              className="btn btn-accent w-35"
               onClick={() => setPage((prev) => (prev >= 1 ? prev - 1 : prev))}
             >
               Previous Page
@@ -40,7 +40,7 @@ function App() {
         <div className="flex flex-col gap-5">
           <button
             type="button"
-            className="btn btn-accent"
+            className="btn btn-accent w-35"
             onClick={() => setPage(10824)}
           >
             Last Page
@@ -49,7 +49,7 @@ function App() {
           {artData?.pagination.next_url && (
             <button
               type="button"
-              className="btn btn-accent"
+              className="btn btn-accent w-35"
               onClick={() =>
                 setPage((prev) => (prev < 10824 ? prev + 1 : prev))
               }
@@ -67,37 +67,44 @@ function App() {
         {artData?.data.map((artwork) => (
           <div
             key={artwork.id}
-            className="card rounded-b-none bg-base-100 max-w-80 shadow-sm"
+            className="card rounded-b-none bg-base-100 max-w-80 shadow-sm min-h-120"
           >
-            <div className="card-body">
-              <h2 className="card-title">{artwork.title}</h2>
-              <h3>
-                <span>
+            <div className="card-body relative px-0">
+              <div className="absolute bottom-5 left-0">
+                <h2 className="card-title">{artwork.title}</h2>
+                <h3>
                   {artwork.artist_display ? artwork.artist_display : null}
-                </span>
-                {" | "}
-                <span>
-                  {artwork.date_display ? artwork.date_display : null}
-                </span>
-              </h3>
+                </h3>
+
+                <h3>{artwork.date_display ? artwork.date_display : null}</h3>
+              </div>
               {/* <p>{artwork.description ? artwork.description : null}</p> */}
             </div>
-            <figure>
-              <img
-                className="border-2 border-amber-200 w-full aspect-video"
-                src={
-                  artwork.thumbnail?.lqip
-                    ? artwork.thumbnail?.lqip
-                    : "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                }
-                alt={
-                  artwork.thumbnail?.alt_text
-                    ? artwork.thumbnail?.alt_text
-                    : "placeholder image"
-                }
-                // "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-              />
-            </figure>
+            <div
+              className="tooltip"
+              data-tip={artwork.description?.replace(/<\/?[^>]+(>|$)/g, "")}
+            >
+              <figure>
+                <img
+                  className="border-2 border-amber-200 w-full aspect-video"
+                  src={
+                    // artwork.thumbnail?.lqip
+                    //   ? artwork.thumbnail?.lqip
+                    //   : "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+                    artwork.image_id
+                      ? "https://www.artic.edu/iiif/2/" +
+                        artwork.image_id +
+                        "/full/843,/0/default.jpg"
+                      : "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+                  }
+                  alt={
+                    artwork.thumbnail?.alt_text
+                      ? artwork.thumbnail?.alt_text
+                      : "placeholder image"
+                  }
+                />
+              </figure>
+            </div>
           </div>
         ))}
       </div>

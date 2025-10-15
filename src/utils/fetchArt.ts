@@ -6,7 +6,7 @@ export async function fetchArt(page: number) {
   const url: string =
     "https://api.artic.edu/api/v1/artworks?page=" +
     page +
-    "&fields=id,title,artist_display,date_display,main_reference_number,thumbnail,description";
+    "&fields=id,title,artist_display,date_display,main_reference_number,thumbnail,description,image_id";
 
   try {
     const response = await fetch(url);
