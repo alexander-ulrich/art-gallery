@@ -3,7 +3,7 @@ import type { ArtworkType } from "../Types";
 export default function ArtworkCard({ artwork }: { artwork: ArtworkType }) {
   return (
     <article className="card mb-5 bg-base-100 max-w-80 p-5 shadow-sm min-h-100">
-      <div className="card-body relative">
+      <div className="card-body min-w-[280px] relative">
         <div className="">
           <h2 className="card-title text-sm font-bold">{artwork.title}</h2>
           <h3>{artwork.artist_title ? artwork.artist_title : null}</h3>
