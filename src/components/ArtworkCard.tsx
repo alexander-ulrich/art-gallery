@@ -17,34 +17,32 @@ export default function ArtworkCard({
           className="tooltip tooltip-accent font-semibold text-sm"
           data-tip={artwork.description?.replace(/<\/?[^>]+(>|$)/g, "")}
         >
-          {artwork.image_id && (
+          {artwork.image_id ? (
             <a
               target="_blank"
               href={
-                // "https://www.artic.edu/iiif/2/" +
                 baseUrl + "/" + artwork.image_id + "/full/843,/0/default.jpg"
               }
             >
               <figure className="max-h-50 hover:scale-102 duration-300">
                 <img
-                  className="border-1 border-accent aspect-auto"
+                  className="aspect-auto"
                   src={
                     artwork.image_id
                       ? baseUrl +
                         "/" +
-                        //   "https://www.artic.edu/iiif/2/" +
                         artwork.image_id +
                         "/full/843,/0/default.jpg"
                       : ""
                   }
-                  alt={
-                    artwork.thumbnail?.alt_text
-                      ? artwork.thumbnail?.alt_text
-                      : "placeholder image"
-                  }
+                  alt={artwork.title ? artwork.title : "placeholder image"}
                 />
               </figure>
             </a>
+          ) : (
+            <div className=" h-50 text-center border-1 border-accent-content">
+              <span className="leading-50">no image</span>
+            </div>
           )}
         </div>
         <div className="my-2">
