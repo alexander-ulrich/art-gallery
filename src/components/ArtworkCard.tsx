@@ -1,41 +1,65 @@
 import type { ArtworkType } from "../Types";
 
-export default function ArtworkCard({ artwork }: { artwork: ArtworkType }) {
+export default function ArtworkCard({
+  artwork,
+  baseUrl,
+}: {
+  artwork: ArtworkType;
+  baseUrl: string | null;
+}) {
+  function handleClick() {
+    //Add or Remove Artwork from localStorage
+  }
   return (
-    <article className="card mb-5 bg-base-100 max-w-80 p-5 shadow-sm min-h-100">
+    <article className="card mb-5 bg-base-100 max-w-80 p-5 shadow-sm h-120">
       <div className="card-body min-w-[280px] relative">
-        <div className="">
+        <div
+          className="tooltip"
+          data-tip={artwork.description?.replace(/<\/?[^>]+(>|$)/g, "")}
+        >
+          {artwork.image_id && (
+            <a
+              target="_blank"
+              href={
+                // "https://www.artic.edu/iiif/2/" +
+                baseUrl + "/" + artwork.image_id + "/full/843,/0/default.jpg"
+              }
+            >
+              <figure className="max-h-50 hover:scale-102 duration-300">
+                <img
+                  className="border-1 border-accent aspect-auto"
+                  src={
+                    artwork.image_id
+                      ? baseUrl +
+                        "/" +
+                        //   "https://www.artic.edu/iiif/2/" +
+                        artwork.image_id +
+                        "/full/843,/0/default.jpg"
+                      : ""
+                  }
+                  alt={
+                    artwork.thumbnail?.alt_text
+                      ? artwork.thumbnail?.alt_text
+                      : "placeholder image"
+                  }
+                />
+              </figure>
+            </a>
+          )}
+        </div>
+        <div className="my-2">
           <h2 className="card-title text-sm font-bold">{artwork.title}</h2>
           <h3>{artwork.artist_title ? artwork.artist_title : null}</h3>
 
           <h3>{artwork.date_display ? artwork.date_display : null}</h3>
         </div>
-        {/* <p>{artwork.description ? artwork.description : null}</p> */}
-      </div>
-      <div
-        className="tooltip"
-        data-tip={artwork.description?.replace(/<\/?[^>]+(>|$)/g, "")}
-      >
-        <figure>
-          <img
-            className="border-2 border-amber-200 w-full aspect-video"
-            src={
-              // artwork.thumbnail?.lqip
-              //   ? artwork.thumbnail?.lqip
-              //   : "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-              artwork.image_id
-                ? "https://www.artic.edu/iiif/2/" +
-                  artwork.image_id +
-                  "/full/843,/0/default.jpg"
-                : "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-            }
-            alt={
-              artwork.thumbnail?.alt_text
-                ? artwork.thumbnail?.alt_text
-                : "placeholder image"
-            }
-          />
-        </figure>
+        <button
+          onClick={handleClick}
+          type="button"
+          className="btn btn-accent-content w-full absolute bottom-0 left-0 font-bold"
+        >
+          Add to Favorites
+        </button>
       </div>
     </article>
   );
