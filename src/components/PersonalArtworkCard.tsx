@@ -1,37 +1,34 @@
-import { useEffect, useState } from "react";
-import PersonalGallery from "../pages/PersonalGallery";
+import { useRef, useState } from "react";
 import type { ArtworkType, PersonalArtworkType } from "../Types";
+import {
+  getFromLocalStorage,
+  removeFromLocalStorage,
+} from "../utils/localStorageAccess";
 
-export default function ArtworkCard({
+export default function PersonalArtworkCard({
   artwork,
   baseUrl,
   personalGallery,
   setPersonalGallery,
 }: {
-  artwork: ArtworkType;
+  artwork: PersonalArtworkType;
   baseUrl: string | null;
   personalGallery: PersonalArtworkType[];
   setPersonalGallery: React.Dispatch<React.SetStateAction<ArtworkType[]>>;
 }) {
-  const [inGallery, setInGallery] = useState(false);
-
-  useEffect(() => {
-    console.log("PersonalGallery from ArtworkCard: " + personalGallery);
-
-    if (personalGallery?.some((art) => art.id === artwork.id)) {
-      setInGallery(true);
-    } else {
-      setInGallery(false);
-    }
-  }, [personalGallery]);
-
-  function handleClick() {
-    //Add or Remove Artwork from localStorage
-    setPersonalGallery([...personalGallery, { ...artwork, comment: "" }]);
+  const [comment, setComment] = useState("");
+  function handleSave() {
+    setPersonalGallery([
+      ...personalGallery.filter((art) => art.id !== artwork.id),
+      { ...artwork, comment: comment },
+    ]);
   }
 
+  function handleClick() {
+    setPersonalGallery(personalGallery.filter((art) => art.id !== artwork.id));
+  }
   return (
-    <article className="card mb-5 bg-base-100 max-w-80 p-5 shadow-sm h-120">
+    <article className="card mb-5 bg-base-100 max-w-80 p-5 shadow-sm h-150">
       <div className="card-body min-w-[280px] relative">
         <div
           className="tooltip tooltip-accent font-semibold text-sm"
@@ -71,14 +68,31 @@ export default function ArtworkCard({
 
           <h3>{artwork.date_display ? artwork.date_display : null}</h3>
         </div>
-        <button
-          onClick={handleClick}
-          disabled={inGallery}
-          type="button"
-          className="btn btn-accent-content w-full absolute bottom-0 left-0 font-bold"
-        >
-          {inGallery ? "Already favorited!" : "Add to Favorites"}
-        </button>
+        <label htmlFor="comment" className="font-bold">
+          Your Comment:
+        </label>
+        <textarea
+          id="comment"
+          defaultValue={artwork.comment}
+          onChange={(e) => setComment(e.target.value)}
+          className=" border-1 border-blue-200 p-2 resize-none h-30"
+        ></textarea>
+        <div className="flex flex-row">
+          <button
+            onClick={handleSave}
+            type="button"
+            className="btn btn-accent w-[50%] absolute bottom-0 left-0 font-bold "
+          >
+            Save Comment
+          </button>
+          <button
+            onClick={handleClick}
+            type="button"
+            className="btn btn-primary w-[45%] absolute bottom-0 right-0 font-bold"
+          >
+            Remove Art
+          </button>
+        </div>
       </div>
     </article>
   );

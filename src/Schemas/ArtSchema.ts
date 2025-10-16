@@ -48,3 +48,16 @@ export const ArtResponseSchema = z.object({
   info: ArtInfoSchema,
   config: ArtConfigSchema,
 });
+
+export const PersonalArtworkSchema = z.object({
+  id: z.number(),
+  title: z.nullable(z.string()),
+  thumbnail: ThumbnailSchema.nullable(),
+  main_reference_number: z.nullable(z.string()),
+  date_display: z.nullable(z.string()),
+  artist_display: z.nullable(z.string()),
+  artist_title: z.nullable(z.string()),
+  description: z.nullable(z.string()),
+  image_id: z.nullable(z.string()),
+  comment: z.string().optional(),
+});
