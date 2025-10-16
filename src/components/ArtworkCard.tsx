@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import PersonalGallery from "../pages/PersonalGallery";
 import type { ArtworkType, PersonalArtworkType } from "../Types";
 
 export default function ArtworkCard({
