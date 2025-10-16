@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { saveToLocalStorage } from "../utils/localStorageAccess";
 import type { ArtworkType } from "../Types";
 import PersonalArtworkCard from "../components/PersonalArtworkCard";
+import { compareArtObject } from "../utils/compare";
 
 export default function PersonalGallery({
   personalGallery,
@@ -21,7 +22,7 @@ export default function PersonalGallery({
         Your Personal Gallery
       </h1>
       <div className="grid auto-rows-max grid-cols-4 max-2xl:grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1 place-items-center my-20 ">
-        {personalGallery.map((artwork) => (
+        {personalGallery.sort(compareArtObject).map((artwork) => (
           <PersonalArtworkCard
             key={artwork.id}
             artwork={artwork}

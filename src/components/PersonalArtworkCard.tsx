@@ -64,11 +64,11 @@ export default function PersonalArtworkCard({
 
           <h3>{artwork.date_display ? artwork.date_display : null}</h3>
         </div>
-        <label htmlFor="comment" className="font-bold">
+        <label htmlFor={artwork.id + "-comment"} className="font-bold">
           Your Comment:
         </label>
         <textarea
-          id="comment"
+          id={artwork.id + "-comment"}
           defaultValue={artwork.comment}
           onChange={(e) => setComment(e.target.value)}
           className=" border-1 border-blue-200 p-2 resize-none h-30"
