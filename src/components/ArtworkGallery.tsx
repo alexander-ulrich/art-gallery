@@ -1,4 +1,3 @@
-import PersonalGallery from "../pages/PersonalGallery";
 import type {
   ArtResponseType,
   ArtworkType,

@@ -1,9 +1,5 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import type { ArtworkType, PersonalArtworkType } from "../Types";
-import {
-  getFromLocalStorage,
-  removeFromLocalStorage,
-} from "../utils/localStorageAccess";
 
 export default function PersonalArtworkCard({
   artwork,

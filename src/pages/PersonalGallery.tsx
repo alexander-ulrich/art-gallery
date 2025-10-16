@@ -1,8 +1,5 @@
-import { useEffect, useState } from "react";
-import {
-  getFromLocalStorage,
-  saveToLocalStorage,
-} from "../utils/localStorageAccess";
+import { useEffect } from "react";
+import { saveToLocalStorage } from "../utils/localStorageAccess";
 import type { ArtworkType } from "../Types";
 import PersonalArtworkCard from "../components/PersonalArtworkCard";
 

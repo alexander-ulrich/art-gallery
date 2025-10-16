@@ -4,11 +4,7 @@ import { Route, Routes } from "react-router";
 import Home from "./pages/Home";
 import PersonalGallery from "./pages/PersonalGallery";
 import { useEffect, useState } from "react";
-import type {
-  ArtResponseType,
-  ArtworkType,
-  PersonalArtworkType,
-} from "./Types";
+import type { ArtResponseType, PersonalArtworkType } from "./Types";
 import { fetchArt } from "./utils/fetchArt";
 import {
   getFromLocalStorage,
