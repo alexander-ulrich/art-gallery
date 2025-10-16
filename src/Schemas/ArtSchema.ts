@@ -61,3 +61,5 @@ export const PersonalArtworkSchema = z.object({
   image_id: z.nullable(z.string()),
   comment: z.string().optional(),
 });
+
+export const PersonalArtworkArraySchema = z.array(PersonalArtworkSchema);
